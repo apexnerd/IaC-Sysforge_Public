@@ -1,0 +1,42 @@
+#cloud-config
+autoinstall:
+  version: 1
+
+  locale: en_US.UTF-8 # Set this to your local timezone
+
+
+  storage:
+    layout:
+      name: direct
+
+  ssh:
+    install-server: true
+    allow-pw: true
+    disable_root: true
+    authorized-keys: [ 
+      "- <SSH-KEY>",
+      "- <SSH-KEY>",
+      "- <SSH-KEY>",
+      "- <SSH-KEY>",
+    ]
+    allow_public_ssh_keys: true
+  
+  packages:
+  - qemu-guest-agent
+  - sudo
+
+  user-data:
+    package_upgrade: false
+    timezone: America/Detroit # Set this to your local timezone
+    users:
+    - name: <DEFAULT_CIUSER_USERNAME>
+      groups: [adm, sudo]
+      lock-passwd: false
+      sudo: ALL=(ALL) NOPASSWD:ALL
+      shell: /bin/bash
+      passwd: "<DEFAULT_CIUSER_PASSWORD>"
+      ssh_authorized_keys:
+      - <SSH-KEY>
+      - <SSH-KEY>
+      - <SSH-KEY>
+      - <SSH-KEY>

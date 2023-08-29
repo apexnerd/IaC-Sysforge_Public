@@ -1,0 +1,9 @@
+---
+- hosts: dhq-linux
+  become: true
+  gather_facts: yes
+  tasks:
+
+  - name:
+    ansible.builtin.reboot:
+      reboot_command: sudo reboot

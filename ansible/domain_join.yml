@@ -1,0 +1,26 @@
+---
+- hosts: dhq-linux
+  become: yes
+  gather_facts: no
+  tasks:
+  - name:
+    include_vars: group_vars/domain_credentials.yml
+
+  - name: install dependencies
+    apt:
+      name:
+        - realmd
+        - sssd
+        - sssd-tools
+        - adcli
+        - libnss-sss
+        - libpam-sss
+        - samba-common-bin
+        - krb5-user
+      state: latest
+  
+  - name: domain join
+    shell: |
+      echo "{{ domain_join_pass }}" | sudo realm join <EXAMPLE.COM> -v -U {{ domain_join_username }} --computer-ou {{ linux_ou }}
+      realm list
+    register: results

@@ -1,0 +1,14 @@
+---
+- hosts: dhq-linux
+  become: true
+  gather_facts: yes
+  tasks:
+
+  - name:
+    ansible.builtin.apt:
+      update_cache: yes
+      upgrade: "dist"
+  
+  - name:
+    ansible.builtin.reboot:
+      reboot_command: sudo reboot

@@ -8,7 +8,7 @@ resource "proxmox_vm_qemu" "docker_n2" {
     
     clone = "ubuntu-docker-template"
     cores = 4
-    sockets = 1
+    sockets = 2
     cpu = "qemu64"
     memory = 16384
     scsihw = "virtio-scsi-pci"

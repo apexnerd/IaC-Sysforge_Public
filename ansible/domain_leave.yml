@@ -6,6 +6,6 @@
 
   - name: domain leave
     shell: |
-      realm leave dhq.apexnerd.tech
+      realm leave <EXAMPLE.COM>
       realm list
     register: results
